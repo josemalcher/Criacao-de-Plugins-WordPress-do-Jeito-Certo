@@ -358,7 +358,72 @@ if ( class_exists( 'MV_Slider' ) ) {
 
 - 15 Criando o tipo de post customizado (CPT) para o plugin - parte 1
 
+- [wp-proj01/wp-content/plugins/mv-slider/post-types/class.mv-slider-cpt.php](wp-proj01/wp-content/plugins/mv-slider/post-types/class.mv-slider-cpt.php)
+
+```php
+<?php
+
+if ( ! class_exists( 'MV_Slider_Post_Type' ) ) {
+	class MV_Slider_Post_Type {
+		function __construct() {
+			add_action( 'init', array( $this, 'create_post_type', ) );
+		}
+
+		public function create_post_type() {
+
+		}
+
+	}
+}
+
+```
+
 - 16 Criando o tipo de post customizado (CPT) para o plugin - parte 2
+
+- [https://developer.wordpress.org/reference/functions/register_post_type/#comment-351](https://developer.wordpress.org/reference/functions/register_post_type/#comment-351)
+- [https://developer.wordpress.org/reference/functions/register_post_type/](https://developer.wordpress.org/reference/functions/register_post_type/)
+- [https://developer.wordpress.org/resource/dashicons/#star-filled](https://developer.wordpress.org/resource/dashicons/#star-filled)
+- [https://developer.wordpress.org/reference/functions/register_post_type/#menu_icon](https://developer.wordpress.org/reference/functions/register_post_type/#menu_icon)
+
+```php
+<?php
+
+if ( ! class_exists( 'MV_Slider_Post_Type' ) ) {
+	class MV_Slider_Post_Type {
+		function __construct() {
+			add_action( 'init', array( $this, 'create_post_type' ) );
+		}
+
+		public function create_post_type() {
+			register_post_type(
+				'mv-slider',
+				array(
+					'label'               => 'Slide MV',
+					'description'         => 'Sliders',
+					'labels'              => array(
+						'name'          => 'Sliders',
+						'singular_name' => 'Slider'
+					),
+					'public'              => true,
+					'supports'            => array( 'title', 'editor', 'thumbnail' ),
+					'hierarchical'        => false,
+					'show_ui'             => true,
+					'show_in_menu'        => true,
+					'menu_position'       => 5,
+					'show_in_admin_bar'   => true,
+					'show_in_nav_menus'   => true,
+					'can_export'          => true,
+					'has_archive'         => false,
+					'exclude_from_search' => false,
+					'publicly_queryable'  => true,
+					'show_in_rest'        => true,
+					'menu_icon'           => 'dashicons-images-alt2'
+				) );
+		}
+	}
+}
+
+```
 
 - 17 API Metabox - O que são metadados?
 
