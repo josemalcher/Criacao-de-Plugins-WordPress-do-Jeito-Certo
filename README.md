@@ -292,7 +292,69 @@ if ( class_exists( 'MV_Slider' ) ) {
 
 - 13 Definindo constantes
 
+- [https://developer.wordpress.org/plugins/plugin-basics/determining-plugin-and-content-directories/](https://developer.wordpress.org/plugins/plugin-basics/determining-plugin-and-content-directories/)
+
+- [wp-proj01/wp-content/plugins/mv-slider/mv-slider.php](wp-proj01/wp-content/plugins/mv-slider/mv-slider.php)
+
+```php
+if ( ! class_exists( 'MV_Slider' ) ) {
+	class MV_Slider {
+
+		public function __construct() {
+			$this->define_constants();
+		}
+
+		public function define_constants(){
+			define('MV_SLIDER_PATH', plugin_dir_path(__FILE__));
+			define('MV_SLIDER_URL', plugin_dir_url(__FILE__));
+			define('MV_SLIDER_VERSION', '0.1.0');
+		}
+	}
+}
+
+```
+
 - 14 Métodos activate, deactivate e uninstall
+
+- [https://developer.wordpress.org/plugins/plugin-basics/uninstall-methods/#method-2-uninstall-php](https://developer.wordpress.org/plugins/plugin-basics/uninstall-methods/#method-2-uninstall-php)
+
+```php
+if ( ! class_exists( 'MV_Slider' ) ) {
+	class MV_Slider {
+
+		public function __construct() {
+			$this->define_constants();
+
+		}
+
+		public function define_constants() {
+			define( 'MV_SLIDER_PATH', plugin_dir_path( __FILE__ ) );
+			define( 'MV_SLIDER_URL', plugin_dir_url( __FILE__ ) );
+			define( 'MV_SLIDER_VERSION', '0.1.0' );
+		}
+
+		public static function activate() {
+			// flush_rewrite_rules();
+			update_option( 'rewrite_rules', '' );
+		}
+
+		public static function deactivate() {
+			flush_rewrite_rules();
+		}
+
+		public static function uninstall() {
+
+		}
+	}
+}
+
+if ( class_exists( 'MV_Slider' ) ) {
+	register_activation_hook( __FILE__, array( 'MV_Slider', 'activate' ) );
+	register_deactivation_hook( __FILE__, array( 'MV_Slider', 'deactivate' ) );
+	register_uninstall_hook( __FILE__, array( 'MV_Slider', 'uninstall' ) );
+	$mv_slider = new MV_Slider();
+}
+```
 
 - 15 Criando o tipo de post customizado (CPT) para o plugin - parte 1
 
