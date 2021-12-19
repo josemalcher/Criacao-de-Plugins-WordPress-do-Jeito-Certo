@@ -215,6 +215,140 @@ add_filter( 'body_class', 'modify_body_classes', 10, 2 );
 
 ## <a name="parte3">3 - Seção 3: Projeto #1 - MV Slider</a>
 
+- 10 Conhecendo o projeto do plugin MV Slider
+
+- 11 Estruturando o plugin
+
+- [https://developer.wordpress.org/plugins/plugin-basics/header-requirements/](https://developer.wordpress.org/plugins/plugin-basics/header-requirements/)
+
+```php
+<?php
+
+/**
+ * Plugin Name:       MV SLIDER
+ * Plugin URI:        https://josemalcher.net/wordpress
+ * Description:       Estudos - Slider Simples
+ * Version:           0.1
+ * Requires at least: 5.8
+ * Requires PHP:      7.2
+ * Author:            José Malcher Jr
+ * Author URI:        https://josemalcher.net
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       mv-sliders
+ * Domain Path:       /languages
+ */
+
+
+/*
+MV-SLIDER is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+any later version.
+
+MV-SLIDER is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with MV-SLIDER. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
+*/
+
+if ( ! defined( 'ABSPATH' ) ) {
+	// die( 'not today' );
+	exit;
+}
+
+```
+
+- [https://developer.wordpress.org/plugins/plugin-basics/including-a-software-license/](https://developer.wordpress.org/plugins/plugin-basics/including-a-software-license/)
+- [https://make.wordpress.org/themes/handbook/review/resources/#licenses-bundled-resources](https://make.wordpress.org/themes/handbook/review/resources/#licenses-bundled-resources)
+
+- 12 Plugins com classes Vs Plugins sem classes
+
+- 13 Definindo constantes
+
+- 14 Métodos activate, deactivate e uninstall
+
+- 15 Criando o tipo de post customizado (CPT) para o plugin - parte 1
+
+- 16 Criando o tipo de post customizado (CPT) para o plugin - parte 2
+
+- 17 API Metabox - O que são metadados?
+
+- 18 API Metabox - Adicionando metaboxes
+
+- 19 API Metabox - Criando formulário para a metabox
+
+- 20 API Metabox - Salvando dados da metabox
+
+- 21 API Metabox - Validando e sanitizando informação
+
+- 22 API Metabox - Escapando informação
+
+- 23 API Metabox - Nonces e outras validações
+
+- 24 API Metabox - Adicionando valores na tabela do post type
+
+- 25 Adicionando menus no admin (parte 1)
+
+- 26 Adicionando menus no admin (parte 2)
+
+- 27 Settings + Options API - Introdução
+
+- 28 Settings + Options API - Criando o formulário
+
+- 29 Settings + Options API - Adicionando seções e campos (parte 1)
+
+- 30 Settings + Options API - Adicionando seções e campos (parte 2)
+
+- 31 Settings + Options API - Adicionando seções e campos (parte 3)
+
+- 32 Settings + Options API - Passando argumentos para os campos criados
+
+- 33 Settings + Options API - Validando campos
+
+- 34 Settings + Options API - Administrando permissões e mensagens de erro
+
+- 35 Settings + Options API - Dividindo as seções em guias
+
+- 36 API Shortcode - Introdução
+
+- 37 API Shortcode - Criando a classe do shortcode
+
+- 38 API Shortcode - Baixando arquivos-base do Flexslider
+
+- 39 API Shortcode - Criando a view do shortcode (parte 1)
+
+- 40 API Shortcode - Criando a view do shortcode (parte 2)
+
+- 41 API Shortcode - Criando a view do shortcode (parte 3)
+
+- 42 API Shortcode - Registrando e enfileirando scripts (parte 1)
+
+- 43 API Shortcode - Registrando e enfileirando scripts (parte 2)
+
+- 44 API Shortcode - Tornando algumas opções dinâmicas (parte 1)
+
+- 45 API Shortcode - Tornando algumas opções dinâmicas (parte 2)
+
+- 46 API Shortcode - Tornando algumas opções dinâmicas (parte 3)
+
+- 47 Traduzindo o plugin (parte 1)
+
+- 48 Traduzindo o plugin (parte 2)
+
+- 49 Traduzindo o plugin (parte 3)
+
+- 50 Traduzindo o plugin (parte 4)
+
+- 51 Traduzindo o plugin (parte 5)
+
+- 52 Traduzindo o plugin (parte 6)
+
+- 53 Desinstalando o plugin
+
 
 
 [Voltar ao Índice](#indice)
