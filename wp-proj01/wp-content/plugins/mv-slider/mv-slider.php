@@ -35,3 +35,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	// die( 'not today' );
 	exit;
 }
+
+if ( ! class_exists( 'MV_Slider' ) ) {
+	class MV_Slider {
+
+		public function __construct() {
+		}
+	}
+}
+
+if ( class_exists( 'MV_Slider' ) ) {
+	$mv_slider = new MV_Slider();
+}

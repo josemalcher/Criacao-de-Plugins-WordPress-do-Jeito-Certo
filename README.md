@@ -267,6 +267,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 - 12 Plugins com classes Vs Plugins sem classes
 
+- [wp-proj01/wp-content/plugins/mv-slider/mv-slider.php](wp-proj01/wp-content/plugins/mv-slider/mv-slider.php)
+
+```php
+if ( ! defined( 'ABSPATH' ) ) {
+	// die( 'not today' );
+	exit;
+}
+
+if ( ! class_exists( 'MV_Slider' ) ) {
+	class MV_Slider {
+
+		public function __construct() {
+		}
+	}
+}
+
+if ( class_exists( 'MV_Slider' ) ) {
+	$mv_slider = new MV_Slider();
+}
+
+```
+
+
 - 13 Definindo constantes
 
 - 14 Métodos activate, deactivate e uninstall
