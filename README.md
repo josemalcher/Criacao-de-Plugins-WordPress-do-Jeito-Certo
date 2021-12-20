@@ -459,7 +459,11 @@ if ( ! class_exists( 'MV_Slider_Post_Type' ) ) {
 
 - 20 API Metabox - Salvando dados da metabox
 
+![Operações de CRUD](img/funcoes.png)
+
 - 21 API Metabox - Validando e sanitizando informação
+
+
 
 - 22 API Metabox - Escapando informação
 
