@@ -52,6 +52,24 @@ if ( ! class_exists( 'MV_Slider_Post_Type' ) ) {
 		}
 
 		public function save_post( $post_id ) {
+			if ( isset( $_POST['mv_slider_nonce'] ) ) {
+				if ( ! wp_verify_nonce( $_POST['mv_slider_nonce'], 'mv_slider_nonce' ) ) {
+					return;
+				}
+			}
+
+			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+				return;
+			}
+
+			if ( isset( $_POST['post_type'] ) && $_POST['post_type'] === 'mv-slider' ) {
+				if ( ! current_user_can( 'edit_page', $post_id ) ) {
+					return;
+				} elseif ( ! current_user_can( 'edit_post', $post_id ) ) {
+					return;
+				}
+			}
+
 			if ( isset( $_POST['action'] ) && $_POST['action'] == 'editpost' ) {
 				$old_link_text = get_post_meta( $post_id, 'mv_slider_link_text', true );
 				$new_link_text = $_POST['mv_slider_link_text'];
@@ -69,11 +87,7 @@ if ( ! class_exists( 'MV_Slider_Post_Type' ) ) {
 				} else {
 					update_post_meta( $post_id, 'mv_slider_link_url', sanitize_text_field( $new_link_url ), $old_link_url );
 				}
-
-
 			}
 		}
-
-
 	}
 }
