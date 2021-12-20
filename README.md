@@ -427,7 +427,33 @@ if ( ! class_exists( 'MV_Slider_Post_Type' ) ) {
 
 - 17 API Metabox - O que são metadados?
 
+- [https://www.engagewp.com/adding-metadata-api-support-to-custom-objects-in-wordpress-the-complete-guide/](https://www.engagewp.com/adding-metadata-api-support-to-custom-objects-in-wordpress-the-complete-guide/)
+
 - 18 API Metabox - Adicionando metaboxes
+
+- [wp-proj01/wp-content/plugins/mv-slider/post-types/class.mv-slider-cpt.php](wp-proj01/wp-content/plugins/mv-slider/post-types/class.mv-slider-cpt.php)
+
+```php
+        function __construct() {
+			add_action( 'init', array( $this, 'create_post_type' ) );
+
+			add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
+		}
+        public function add_meta_boxes(){
+			add_meta_box(
+				'mv_slider_meta_box',
+				'Link Options',
+				array( $this, 'add_inner_meta_boxes' ),
+				'mv-slider',
+				'normal',
+				'high'
+			);
+		}
+
+		public function add_inner_meta_boxes( $post ){
+
+		}
+```
 
 - 19 API Metabox - Criando formulário para a metabox
 
