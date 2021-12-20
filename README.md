@@ -520,6 +520,52 @@ public function save_post( $post_id ) {
 
 - 22 API Metabox - Escapando informação
 
+![](img/escapes.png)
+
+- [wp-proj01/wp-content/plugins/mv-slider/views/mv-slider_metabox.php](wp-proj01/wp-content/plugins/mv-slider/views/mv-slider_metabox.php)
+
+```php
+<?php
+    $meta      = get_post_meta( $post->ID );
+    $link_text = get_post_meta( $post->ID, 'mv_slider_link_text', true );
+    $link_url  = get_post_meta( $post->ID, 'mv_slider_link_url', true );
+    //var_dump( $link_text, $link_url );
+?>
+<table class="form-table mv-slider-metabox">
+    <tr>
+        <th>
+            <label for="mv_slider_link_text">Link Text</label>
+        </th>
+        <td>
+            <input
+                    type="text"
+                    name="mv_slider_link_text"
+                    id="mv_slider_link_text"
+                    class="regular-text link-text"
+                    value="<?php echo ( isset( $link_text ) ) ? esc_html( $link_text ) : ''; ?>"
+                    required
+            >
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <label for="mv_slider_link_url">Link URL</label>
+        </th>
+        <td>
+            <input
+                    type="url"
+                    name="mv_slider_link_url"
+                    id="mv_slider_link_url"
+                    class="regular-text link-url"
+                    value="<?php echo ( isset( $link_url ) ) ? esc_url( $link_url ) : ''; ?>"
+                    required
+            >
+        </td>
+    </tr>
+</table>
+
+```
+
 - 23 API Metabox - Nonces e outras validações
 
 - 24 API Metabox - Adicionando valores na tabela do post type
