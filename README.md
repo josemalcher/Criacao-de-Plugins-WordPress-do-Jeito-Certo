@@ -463,7 +463,60 @@ if ( ! class_exists( 'MV_Slider_Post_Type' ) ) {
 
 - 21 API Metabox - Validando e sanitizando informação
 
+Lista com funções de sanitização usadas pelo WordPres:
+```text
+- sanitize_email(): retira todos os caracteres não permitidos num endereço de email;
+- sanitize_file_name(): sanitiza um nome de arquivo, substituindo espaços em branco por traços;
+- sanitize_html_class(): sanitiza um nome de classe HTML, deixando apenas caracteres válidos;
+- sanitize_key(): sanitiza o nome de uma chave (identificador interno), permitindo caracteres alfanuméricos em letras minúsculas, traços e sublinhados;
+- sanitize_meta(): sanitiza um valor de chave meta;
+- sanitize_mime_type(): sanitiza um mime type (tipo de mídia);
+- sanitize_option(): sanitiza uma opção com base no seu tipo. Os tipos são definidos por uma declaração switch e passados como primeiro parâmetro. No segundo parâmetro é passado o valor a sanitizar. Ums lista pode ser encontrada no endereço abaixo: https://codex.wordpress.org/Function_Reference/sanitize_option#Notes
+- sanitize_sql_orderby(): assegura que a string passada é uma cláusula ‘order by’ SQL válida;
+- sanitize_text_field(): sanitiza dados passados como texto, removendo todas as tags, espaços em branco do início e do fim do texto, espaços extras, quebras, tabulações, conteúdo UTF-8 inválido. Ainda, transforma sinais < em entidades HTML;
+- sanitize_title(): sanitiza um título (para posts, páginas etc), retirando tags PHP e HTML. Se o título estiver em branco, permite informar um valor padrão;
+- sanitize_title_for_query(): sanitiza um título para uso em consultas por um valor de URL;
+- sanitize_title_with_dashes(): sanitiza um título, substituindo espaços em branco e alguns outros caracteres por traços;
+- sanitize_user(): sanitiza um nome de usuário, retirando caracteres inseguros;
+- esc_url_raw(): aplica a função de escape esc_url(), usada para campos do tipo URL, para uso em banco de dados;
+- wp_filter_post_kses() e wp_kses_post(): sanitizam um conteúdo para aceitar apenas tags HTML permitidas em posts;
+- wp_kses(): permite apenas uma lista de tags HTML especificadas pelo desenvolvedor;
+- wp_kses_data(): sanitiza um conteúdo deixando apenas HTML permitido pela regra da função wp_kses();
+- wp_filter_nohtml_kses(): retira todo o conteúdo HTML de uma string de texto;
+- sanitize_hex_color(): sanitiza uma informação, retornando um código de cor hexadecimal válido, com 3 ou 6 dígitos (precedidos do sinal #), ou retorna vazio;
+- sanitize_hex_color_no_hash(): o mesmo que a função anterior, sem retornar o sinal #;
+- wp_rel_nofollow(): adiciona rel=”nofollow” a todo elemento HTML <a> do conteúdo passado;
+- absint(): converte o valor passado para inteiro positivo. 
 
+Para mais detalhes sobre essas funções, verifique a documentação do WordPress.
+ ```
+
+- [wp-proj01/wp-content/plugins/mv-slider/post-types/class.mv-slider-cpt.php](wp-proj01/wp-content/plugins/mv-slider/post-types/class.mv-slider-cpt.php)
+
+```php
+public function save_post( $post_id ) {
+			if ( isset( $_POST['action'] ) && $_POST['action'] == 'editpost' ) {
+				$old_link_text = get_post_meta( $post_id, 'mv_slider_link_text', true );
+				$new_link_text = $_POST['mv_slider_link_text'];
+				$old_link_url  = get_post_meta( $post_id, 'mv_slider_link_url', true );
+				$new_link_url  = $_POST['mv_slider_link_url'];
+
+				if ( empty( $new_link_text ) ) {
+					update_post_meta( $post_id, 'mv_slider_link_text', 'Add some text' );
+				} else {
+					update_post_meta( $post_id, 'mv_slider_link_text', sanitize_text_field( $new_link_text ), $old_link_text );
+				}
+
+				if ( empty( $new_link_url ) ) {
+					update_post_meta( $post_id, 'mv_slider_link_url', '#' );
+				} else {
+					update_post_meta( $post_id, 'mv_slider_link_url', sanitize_text_field( $new_link_url ), $old_link_url );
+				}
+
+
+			}
+		}
+```
 
 - 22 API Metabox - Escapando informação
 
