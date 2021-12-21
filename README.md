@@ -698,6 +698,41 @@ public function save_post( $post_id ) {
 
 - 26 Adicionando menus no admin (parte 2)
 
+- [wp-proj01/wp-content/plugins/mv-slider/mv-slider.php](wp-proj01/wp-content/plugins/mv-slider/mv-slider.php)
+
+```php
+        public function add_menu() {
+			add_menu_page(
+				'MV Slider Options',
+				'MV Slider',
+				'manage_options',
+				'mv_slider_admin',
+				array( $this, 'mv_slider_settings_page' ),
+				'dashicons-images-alt2'
+			);
+			add_submenu_page(
+				'mv_slider_admin',
+				'Manage Slides',
+				'Manage Slides',
+				'manage_options',
+				'edit.php?post_type=mv-slider',
+				null,
+				null
+			);
+
+			add_submenu_page(
+				'mv_slider_admin',
+				'Add New Slide',
+				'Add New Slide',
+				'manage_options',
+				'post-new.php?post_type=mv-slider',
+				null,
+				null
+			);
+		}
+```
+
+
 - 27 Settings + Options API - Introdução
 
 - 28 Settings + Options API - Criando o formulário
