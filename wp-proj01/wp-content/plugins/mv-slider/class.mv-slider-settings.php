@@ -1,18 +1,18 @@
 <?php
 
-if ( ! class_exists( 'MV_Slider_Settings' ) ) {
-	class MV_Slider_Settings {
+if( ! class_exists( 'MV_Slider_Settings' )){
+	class MV_Slider_Settings{
 
 		public static $options;
 
-		public function __construct() {
+		public function __construct(){
 			self::$options = get_option( 'mv_slider_options' );
-			add_action( 'admin_init', array( $this, 'admin_init' ) );
+			add_action( 'admin_init', array( $this, 'admin_init') );
 		}
 
-		public function admin_init() {
+		public function admin_init(){
 
-			register_setting( 'mv_slider_group', 'mv_slider_options' );
+			register_setting( 'mv_slider_group', 'mv_slider_options', array( $this, 'mv_slider_validate' ) );
 
 			add_settings_section(
 				'mv_slider_main_section',
@@ -65,7 +65,7 @@ if ( ! class_exists( 'MV_Slider_Settings' ) ) {
 				'mv_slider_page2',
 				'mv_slider_second_section',
 				array(
-					'items'     => array(
+					'items' => array(
 						'style-1',
 						'style-2'
 					),
@@ -75,13 +75,13 @@ if ( ! class_exists( 'MV_Slider_Settings' ) ) {
 			);
 		}
 
-		public function mv_slider_shortcode_callback() {
+		public function mv_slider_shortcode_callback(){
 			?>
             <span>Use the shortcode [mv_slider] to display the slider in any page/post/widget</span>
 			<?php
 		}
 
-		public function mv_slider_title_callback( $args ) {
+		public function mv_slider_title_callback( $args ){
 			?>
             <input
                     type="text"
@@ -92,7 +92,7 @@ if ( ! class_exists( 'MV_Slider_Settings' ) ) {
 			<?php
 		}
 
-		public function mv_slider_bullets_callback( $args ) {
+		public function mv_slider_bullets_callback( $args ){
 			?>
             <input
                     type="checkbox"
@@ -100,7 +100,7 @@ if ( ! class_exists( 'MV_Slider_Settings' ) ) {
                     id="mv_slider_bullets"
                     value="1"
 				<?php
-				if ( isset( self::$options['mv_slider_bullets'] ) ) {
+				if( isset( self::$options['mv_slider_bullets'] ) ){
 					checked( "1", self::$options['mv_slider_bullets'], true );
 				}
 				?>
@@ -110,13 +110,13 @@ if ( ! class_exists( 'MV_Slider_Settings' ) ) {
 			<?php
 		}
 
-		public function mv_slider_style_callback( $args ) {
+		public function mv_slider_style_callback( $args ){
 			?>
             <select
                     id="mv_slider_style"
                     name="mv_slider_options[mv_slider_style]">
 				<?php
-				foreach ( $args['items'] as $item ):
+				foreach( $args['items'] as $item ):
 					?>
                     <option value="<?php echo esc_attr( $item ); ?>"
 						<?php
@@ -128,6 +128,24 @@ if ( ! class_exists( 'MV_Slider_Settings' ) ) {
 				<?php endforeach; ?>
             </select>
 			<?php
+		}
+
+		public function mv_slider_validate( $input ){
+			$new_input = array();
+			foreach( $input as $key => $value ){
+				switch ($key){
+					case 'mv_slider_title':
+						if( empty( $value )){
+							$value = 'Please, type some text';
+						}
+						$new_input[$key] = sanitize_text_field( $value );
+						break;
+					default:
+						$new_input[$key] = sanitize_text_field( $value );
+						break;
+				}
+			}
+			return $new_input;
 		}
 
 	}
