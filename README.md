@@ -673,6 +673,29 @@ public function save_post( $post_id ) {
 
 - 25 Adicionando menus no admin (parte 1)
 
+- [https://wordpress.org/support/article/roles-and-capabilities/#capability-vs-role-table](https://wordpress.org/support/article/roles-and-capabilities/#capability-vs-role-table)
+
+```php
+	add_action( 'admin_menu', array( $this, 'add_menu' ) );
+	
+        public function add_menu() {
+        add_menu_page(
+            'MV Slider Options',
+            'MV Slider',
+            'manage_options',
+            'mv_slider_admin',
+            array( $this, 'mv_slider_settings_page' ),
+            'dashicons-images-alt2'
+        );
+		}
+
+		public function mv_slider_settings_page() {
+			echo "This is a test page";
+		}
+	}
+
+```
+
 - 26 Adicionando menus no admin (parte 2)
 
 - 27 Settings + Options API - Introdução
