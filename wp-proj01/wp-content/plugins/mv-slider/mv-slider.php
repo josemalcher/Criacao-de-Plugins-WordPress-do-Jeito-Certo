@@ -101,7 +101,7 @@ if ( ! class_exists( 'MV_Slider' ) ) {
 		}
 
 		public function mv_slider_settings_page() {
-			echo "This is a test page";
+			require( MV_SLIDER_PATH . 'views/settings-page.php' );
 		}
 	}
 }

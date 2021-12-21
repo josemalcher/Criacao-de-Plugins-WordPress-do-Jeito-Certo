@@ -737,6 +737,9 @@ public function save_post( $post_id ) {
 
 - 28 Settings + Options API - Criando o formulário
 
+- [http://localhost:8081/wp-admin/options.php](http://localhost:8081/wp-admin/options.php)
+
+
 - 29 Settings + Options API - Adicionando seções e campos (parte 1)
 
 - 30 Settings + Options API - Adicionando seções e campos (parte 2)
