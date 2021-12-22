@@ -1,5 +1,5 @@
 <h3><?php echo ( ! empty ( $content ) ) ? esc_html( $content ) : esc_html( MV_Slider_Settings::$options['mv_slider_title'] ); ?></h3>
-<div class="mv-slider flexslider ">
+<div class="mv-slider flexslider <?php echo ( isset( MV_Slider_Settings::$options['mv_slider_style'] ) ) ? esc_attr( MV_Slider_Settings::$options['mv_slider_style'] ) : 'style-1'; ?>">
     <ul class="slides">
 		<?php
 
