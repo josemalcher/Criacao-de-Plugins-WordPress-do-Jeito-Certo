@@ -1,45 +1,39 @@
 <?php
 
 /**
- * Plugin Name:       MV SLIDER
- * Plugin URI:        https://josemalcher.net/wordpress
- * Description:       Estudos - Slider Simples
- * Version:           0.1
- * Requires at least: 5.8
- * Requires PHP:      7.2
- * Author:            José Malcher Jr
- * Author URI:        https://josemalcher.net
- * License:           GPL v2 or later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       mv-sliders
- * Domain Path:       /languages
+ * Plugin Name: MV Slider
+ * Plugin URI: https://www.wordpress.org/mv-slider
+ * Description: My plugin's description
+ * Version: 1.0
+ * Requires at least: 5.6
+ * Author: Marcelo Vieira
+ * Author URI: https://www.codigowp.net
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: mv-slider
+ * Domain Path: /languages
  */
 
-
 /*
-MV-SLIDER is free software: you can redistribute it and/or modify
+MV Slider is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 2 of the License, or
 any later version.
-
-MV-SLIDER is distributed in the hope that it will be useful,
+MV Slider is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
-
 You should have received a copy of the GNU General Public License
-along with MV-SLIDER. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
+along with MV Slider. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	// die( 'not today' );
 	exit;
 }
 
 if ( ! class_exists( 'MV_Slider' ) ) {
 	class MV_Slider {
-
-		public function __construct() {
+		function __construct() {
 			$this->define_constants();
 
 			add_action( 'admin_menu', array( $this, 'add_menu' ) );
@@ -52,23 +46,24 @@ if ( ! class_exists( 'MV_Slider' ) ) {
 
 			require_once( MV_SLIDER_PATH . 'shortcodes/class.mv-slider-shortcode.php' );
 			$MV_Slider_Shortcode = new MV_Slider_Shortcode();
-		}
 
+			add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ), 999 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
+		}
 
 		public function define_constants() {
 			define( 'MV_SLIDER_PATH', plugin_dir_path( __FILE__ ) );
 			define( 'MV_SLIDER_URL', plugin_dir_url( __FILE__ ) );
-			define( 'MV_SLIDER_VERSION', '0.1.0' );
+			define( 'MV_SLIDER_VERSION', '1.0.0' );
 		}
 
 		public static function activate() {
-			// flush_rewrite_rules();
 			update_option( 'rewrite_rules', '' );
-			unregister_post_type( 'mv-slider' );
 		}
 
 		public static function deactivate() {
 			flush_rewrite_rules();
+			unregister_post_type( 'mv-slider' );
 		}
 
 		public static function uninstall() {
@@ -84,6 +79,7 @@ if ( ! class_exists( 'MV_Slider' ) ) {
 				array( $this, 'mv_slider_settings_page' ),
 				'dashicons-images-alt2'
 			);
+
 			add_submenu_page(
 				'mv_slider_admin',
 				'Manage Slides',
@@ -103,6 +99,7 @@ if ( ! class_exists( 'MV_Slider' ) ) {
 				null,
 				null
 			);
+
 		}
 
 		public function mv_slider_settings_page() {
@@ -118,11 +115,25 @@ if ( ! class_exists( 'MV_Slider' ) ) {
 
 			require( MV_SLIDER_PATH . 'views/settings-page.php' );
 		}
+
+		public function register_scripts() {
+			wp_register_script( 'mv-slider-main-jq', MV_SLIDER_URL . 'vendor/flexslider/jquery.flexslider-min.js', array( 'jquery' ), MV_SLIDER_VERSION, true );
+			wp_register_script( 'mv-slider-options-js', MV_SLIDER_URL . 'vendor/flexslider/flexslider.js', array( 'jquery' ), MV_SLIDER_VERSION, true );
+			wp_register_style( 'mv-slider-main-css', MV_SLIDER_URL . 'vendor/flexslider/flexslider.css', array(), MV_SLIDER_VERSION, 'all' );
+			wp_register_style( 'mv-slider-style-css', MV_SLIDER_URL . 'assets/css/frontend.css', array(), MV_SLIDER_VERSION, 'all' );
+		}
+
+		public function register_admin_scripts() {
+			global $typenow;
+			if ( $typenow == 'mv-slider' ) {
+				wp_enqueue_style( 'mv-slider-admin', MV_SLIDER_URL . 'assets/css/admin.css' );
+			}
+		}
+
 	}
 }
 
 if ( class_exists( 'MV_Slider' ) ) {
-
 	register_activation_hook( __FILE__, array( 'MV_Slider', 'activate' ) );
 	register_deactivation_hook( __FILE__, array( 'MV_Slider', 'deactivate' ) );
 	register_uninstall_hook( __FILE__, array( 'MV_Slider', 'uninstall' ) );

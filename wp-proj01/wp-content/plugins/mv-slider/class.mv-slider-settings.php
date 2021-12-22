@@ -146,8 +146,10 @@ if ( ! class_exists( 'MV_Slider_Settings' ) ) {
 						break;
 				}
 			}
+
 			return $new_input;
 		}
+
 	}
 }
 
