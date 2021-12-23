@@ -15,11 +15,11 @@ if ( ! class_exists( 'MV_Slider_Post_Type' ) ) {
 			register_post_type(
 				'mv-slider',
 				array(
-					'label'               => __( 'Slider', 'mv-slider' ),
-					'description'         => __( 'Sliders', 'mv-slider' ),
+					'label'               => esc_html__( 'Slider', 'mv-slider' ),
+					'description'         => esc_html__( 'Sliders', 'mv-slider' ),
 					'labels'              => array(
-						'name'          => __( 'Sliders', 'mv-slider' ),
-						'singular_name' => __( 'Slider', 'mv-slider' ),
+						'name'          => esc_html__( 'Sliders', 'mv-slider' ),
+						'singular_name' => esc_html__( 'Slider', 'mv-slider' ),
 					),
 					'public'              => true,
 					'supports'            => array( 'title', 'editor', 'thumbnail' ),
@@ -67,7 +67,7 @@ if ( ! class_exists( 'MV_Slider_Post_Type' ) ) {
 		public function add_meta_boxes() {
 			add_meta_box(
 				'mv_slider_meta_box',
-				__( 'Link Options', 'mv-slider' ),
+				esc_html__( 'Link Options', 'mv-slider' ),
 				array( $this, 'add_inner_meta_boxes' ),
 				'mv-slider',
 				'normal',
@@ -105,7 +105,7 @@ if ( ! class_exists( 'MV_Slider_Post_Type' ) ) {
 				$new_link_url  = $_POST['mv_slider_link_url'];
 
 				if ( empty( $new_link_text ) ) {
-					update_post_meta( $post_id, 'mv_slider_link_text', __( 'Add some text', 'mv-slider' ) );
+					update_post_meta( $post_id, 'mv_slider_link_text', esc_html__( 'Add some text', 'mv-slider' ) );
 				} else {
 					update_post_meta( $post_id, 'mv_slider_link_text', sanitize_text_field( $new_link_text ), $old_link_text );
 				}
