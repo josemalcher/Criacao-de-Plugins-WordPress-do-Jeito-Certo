@@ -1,14 +1,14 @@
 <?php
-    $meta      = get_post_meta( $post->ID );
-    $link_text = get_post_meta( $post->ID, 'mv_slider_link_text', true );
-    $link_url  = get_post_meta( $post->ID, 'mv_slider_link_url', true );
-    //var_dump( $link_text, $link_url );
+$meta      = get_post_meta( $post->ID );
+$link_text = get_post_meta( $post->ID, 'mv_slider_link_text', true );
+$link_url  = get_post_meta( $post->ID, 'mv_slider_link_url', true );
+//var_dump( $link_text, $link_url );
 ?>
 <table class="form-table mv-slider-metabox">
     <input type="hidden" name="mv_slider_nonce" value="<?php echo wp_create_nonce( "mv_slider_nonce" ); ?>">
     <tr>
         <th>
-            <label for="mv_slider_link_text">Link Text</label>
+            <label for="mv_slider_link_text"><?php _e( 'Link Text', 'mv-slider' ); ?></label>
         </th>
         <td>
             <input
@@ -23,7 +23,7 @@
     </tr>
     <tr>
         <th>
-            <label for="mv_slider_link_url">Link URL</label>
+            <label for="mv_slider_link_url"><?php _e( 'Link URL', 'mv-slider' ); ?></label>
         </th>
         <td>
             <input
