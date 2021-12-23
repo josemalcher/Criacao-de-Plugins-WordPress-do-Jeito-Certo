@@ -866,6 +866,24 @@ removed: function(){}           //{NEW} Callback: function(slider) - Fires after
 
 - 53 Desinstalando o plugin
 
+```php
+        public static function uninstall() {
+
+			delete_option( 'mv_slider_options' );
+
+			$posts = get_posts(
+				array(
+					'post_type'    => 'mv-slider',
+					'number_posts' => - 1, // traga TODOS os POST
+					'post_status'  => 'any' // qualquer um STATUS
+				)
+			);
+
+			foreach ( $posts as $post ) {
+				wp_delete_post( $post->ID, true ); // true = exclue o post | sem parametro vai para lixeira
+			}
+		}
+```
 
 
 [Voltar ao Índice](#indice)
