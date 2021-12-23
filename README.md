@@ -856,9 +856,13 @@ removed: function(){}           //{NEW} Callback: function(slider) - Fires after
 
 - 51 Traduzindo o plugin (parte 5)
 
+- [https://poedit.net/](https://poedit.net/)
+
 - 52 Traduzindo o plugin (parte 6)
 
 - [https://make.wordpress.org/polyglots/teams/](https://make.wordpress.org/polyglots/teams/)
+
+- [https://github.com/fxbenard/Blank-WordPress-Pot](https://github.com/fxbenard/Blank-WordPress-Pot)
 
 - 53 Desinstalando o plugin
 
