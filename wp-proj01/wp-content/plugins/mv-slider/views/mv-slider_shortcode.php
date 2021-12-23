@@ -20,7 +20,14 @@
 
 				?>
                 <li>
-					<?php the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) ); ?>
+					<?php
+					if ( has_post_thumbnail() ) {
+						the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );
+					} else {
+						echo "<img src='" . MV_SLIDER_URL . "assets/images/default.jpg' class='img-fluid wp-post-image' />";
+					}
+
+					?>
                     <div class="mvs-container">
                         <div class="slider-details-container">
                             <div class="wrapper">
