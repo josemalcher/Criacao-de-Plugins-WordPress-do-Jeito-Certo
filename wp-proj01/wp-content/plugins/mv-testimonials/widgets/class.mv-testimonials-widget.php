@@ -22,11 +22,11 @@ class MV_Testimonials_Widget extends WP_Widget {
 	}
 
 	public function form( $instance ) {
-		$title      = 'Test title';
-		$number     = 5;
-		$image      = false;
-		$occupation = true;
-		$company    = true;
+		$title      = isset( $instance['title'] ) ? $instance['title'] : '';
+		$number     = isset( $instance['number'] ) ? (int) $instance['number'] : 5;
+		$image      = isset( $instance['image'] ) ? (bool) $instance['image'] : false;
+		$occupation = isset( $instance['occupation'] ) ? (bool) $instance['occupation'] : false;
+		$company    = isset( $instance['company'] ) ? (bool) $instance['company'] : false;
 		?>
         <p>
             <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title', 'mv-testimonials' ); ?>
@@ -69,6 +69,13 @@ class MV_Testimonials_Widget extends WP_Widget {
 	}
 
 	public function update( $new_instance, $old_instance ) {
+		$instance               = $old_instance;
+		$instance['title']      = sanitize_text_field( $new_instance['title'] );
+		$instance['number']     = (int) $new_instance['number'];
+		$instance['image']      = ! empty ( $new_instance['image'] ) ? 1 : 0;
+		$instance['occupation'] = ! empty ( $new_instance['occupation'] ) ? 1 : 0;
+		$instance['company']    = ! empty ( $new_instance['company'] ) ? 1 : 0;
 
+		return $instance;
 	}
 }
