@@ -893,7 +893,43 @@ removed: function(){}           //{NEW} Callback: function(slider) - Fires after
 
 ## <a name="parte4">4 - Seção 4: Projeto #2 - MV Testimonials</a>
 
+- 54 Conhecendo o projeto do plugin MV Testimonials
 
+- 55 Criando o tipo de post customizado (CPT) para o plugin
+
+- 56 Criando campos personalizados com API Metabox (parte 1)
+
+- 57 Criando campos personalizados com API Metabox (parte 2)
+
+- 58 API Widget - Introdução
+
+- 59 API Widget - Criando a classe do widget
+
+- [https://developer.wordpress.org/reference/functions/wp_register_sidebar_widget/](https://developer.wordpress.org/reference/functions/wp_register_sidebar_widget/)
+
+- 60 API Widget - Criando o formulário do widget
+
+- 61 API Widget - Salvando dados de configurações dos widgets
+
+- 62 API Widget - Mostrando o widget no frontend (parte 1)
+
+- 63 API Widget - Mostrando o widget no frontend (parte 2)
+
+- 64 API Widget - Mostrando o widget no frontend (parte 3)
+
+- 65 Criando templates especializados para o plugin (parte 1)
+
+- 66 Criando templates especializados para o plugin (parte 2)
+
+- [https://developer.wordpress.org/reference/functions/add_theme_support/](https://developer.wordpress.org/reference/functions/add_theme_support/)
+
+- 67 Criando templates especializados para o plugin (parte 3)
+
+- 68 Criando templates especializados para o plugin (parte 4)
+
+- 69 Traduzindo o plugin
+
+- 70 Desinstalando o plugi
 
 [Voltar ao Índice](#indice)
 
