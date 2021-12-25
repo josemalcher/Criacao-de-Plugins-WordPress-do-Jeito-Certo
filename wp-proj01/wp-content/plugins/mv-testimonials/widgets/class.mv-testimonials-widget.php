@@ -75,6 +75,8 @@ class MV_Testimonials_Widget extends WP_Widget {
 		echo $args['before_widget'];
 		echo $args['before_title'] . $title . $args['after_title'];
 
+		require( MV_TESTIMONIALS_PATH . 'views/mv-testimonials_widget.php' );
+
 		echo $args['after_widget'];
 	}
 
