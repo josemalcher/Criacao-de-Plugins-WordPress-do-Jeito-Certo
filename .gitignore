@@ -29,3 +29,5 @@
 /wp-proj01/wp-content/plugins/simply-show-hooks/
 /wp-proj01/.htaccess
 /wp-proj01/wp-config.php
+!/wp-proj01/wp-content/themes/twentytwenty/functions.php
+/wp-proj01/wp-content/plugins/show-current-template/
