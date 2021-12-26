@@ -46,3 +46,4 @@ if ( $testimonials->have_posts() ):
 	wp_reset_postdata();
 endif;
 ?>
+<a href="<?php echo get_post_type_archive_link( 'mv-testimonials' ); ?>"><?php echo esc_html_e( 'Show More Testimonials', 'mv-testimonials' ); ?></a>
