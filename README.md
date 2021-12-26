@@ -929,7 +929,7 @@ removed: function(){}           //{NEW} Callback: function(slider) - Fires after
 
 - 69 Traduzindo o plugin
 
-- 70 Desinstalando o plugi
+- 70 Desinstalando o plugin
 
 [Voltar ao Índice](#indice)
 
