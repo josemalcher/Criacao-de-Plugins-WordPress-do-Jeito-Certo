@@ -46,4 +46,3 @@ if ( $testimonials->have_posts() ):
 	wp_reset_postdata();
 endif;
 ?>
-

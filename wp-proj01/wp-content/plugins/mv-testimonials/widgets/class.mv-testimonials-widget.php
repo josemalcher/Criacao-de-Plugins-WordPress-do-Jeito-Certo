@@ -19,6 +19,20 @@ class MV_Testimonials_Widget extends WP_Widget {
 			);
 		}
 		);
+
+		if ( is_active_widget( false, false, $this->id_base ) ) {
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
+		}
+	}
+
+	public function enqueue() {
+		wp_enqueue_style(
+			'mv-testimonials-style-css',
+			MV_TESTIMONIALS_URL . 'assets/css/frontend.css',
+			array(),
+			MV_TESTIMONIALS_VERSION,
+			'all'
+		);
 	}
 
 	public function form( $instance ) {
