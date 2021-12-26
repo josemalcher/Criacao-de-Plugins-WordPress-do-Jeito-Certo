@@ -938,6 +938,77 @@ removed: function(){}           //{NEW} Callback: function(slider) - Fires after
 
 ## <a name="parte5">5 - Seção 5: Projeto #3 - MV Translations</a>
 
+- 71 Conhecendo o projeto do plugin MV Translations
+
+- 72 Vantagens e desvantagens das tabelas próprias
+
+- [https://wordpress.stackexchange.com/questions/4852/post-meta-vs-separate-database-tables](https://wordpress.stackexchange.com/questions/4852/post-meta-vs-separate-database-tables)
+- [https://github.com/woocommerce/woocommerce/wiki/Database-Description](https://github.com/woocommerce/woocommerce/wiki/Database-Description)
+
+
+
+- 73 Classe $wpdb - Criando uma tabela própria
+
+- [https://developer.wordpress.org/reference/classes/wpdb/](https://developer.wordpress.org/reference/classes/wpdb/)
+- [https://sltaylor.co.uk/blog/custom-meta-tables-wordpress/](https://sltaylor.co.uk/blog/custom-meta-tables-wordpress/)
+
+- 74 Classe $wpdb - Criando páginas na instalação do plugin
+
+- 75 Criando o CPT e a taxonomia do plugin
+
+- [https://deliciousbrains.com/tour-wordpress-database/]https://deliciousbrains.com/tour-wordpress-database/)
+
+- 76 Classe $wpdb - Registrando a tabela para uso
+
+- 77 Classe $wpdb - Selecionando dados com o método get_results
+
+- 78 Classe $wpdb - Inserindo dados com o método insert
+
+- [https://wordpress.org/support/article/post-status/](https://wordpress.org/support/article/post-status/)
+
+- 79 Classe $wpdb - Atualizando dados com o método update
+
+- [https://wordpress.stackexchange.com/questions/134664/what-is-correct-way-to-hook-when-update-post](https://wordpress.stackexchange.com/questions/134664/what-is-correct-way-to-hook-when-update-post)
+
+- 80 Classe $wpdb - Apagando dados com o método delete
+
+- 81 Criando a classe do primeiro shortcode
+
+- 82 Criando a view para o shortcode (parte 1)
+
+- 83 Criando a view para o shortcode (parte 2)
+
+- 84 Criando a view para o shortcode (parte 3)
+
+- 85 Criando a view para o shortcode (parte 4)
+
+- 86 Criando a view para o shortcode (parte 5)
+
+- 87 Criando a view para o shortcode (parte 6)
+
+- 88 Criando a view para o shortcode (parte 7)
+
+- 89 Criando a view para o shortcode (parte 8)
+
+- 90 Criando a view para o shortcode (parte 9)
+
+- 91 Criando a view para o shortcode de edição (parte 1)
+
+- 92 Criando a view para o shortcode de edição (parte 2)
+
+- [https://stackoverflow.com/questions/6320113/how-to-prevent-form-resubmission-when-page-is-refreshed-f5-ctrlr/38768140#38768140](https://stackoverflow.com/questions/6320113/how-to-prevent-form-resubmission-when-page-is-refreshed-f5-ctrlr/38768140#38768140)
+
+- 93 Criando um template especializado para o plugin (parte 1)
+
+- [https://www.engagewp.com/adding-metadata-api-support-to-custom-objects-in-wordpress-the-complete-guide/](https://www.engagewp.com/adding-metadata-api-support-to-custom-objects-in-wordpress-the-complete-guide/)
+
+- 94 Criando um template especializado para o plugin (parte 2)
+
+- 95 Mostrando as traduções do autor na página de arquivos de autor
+
+- 96 Traduzindo o plugin
+
+- 97 Desinstalando o plugin
 
 
 [Voltar ao Índice](#indice)
@@ -947,6 +1018,17 @@ removed: function(){}           //{NEW} Callback: function(slider) - Fires after
 
 ## <a name="parte6">6 - Seção 6: Conclusão</a>
 
+- [Criação de Temas WordPress com WooCommerce: Curso Avançado](https://www.udemy.com/course/woocommerce-wordpress-curso-avancado/?couponCode=WOO-COMPLETO-DEZ-21)
+
+- [WordPress para Desenvolvedores: Criação de Temas do Zero](https://www.udemy.com/course/wordpress-temas-do-zero-com-bootstrap-4/?couponCode=PDEV-DEZ-21)
+
+- [Converta Templates HTML5 One Page em Temas WordPress](https://www.udemy.com/course/transformar-site-html-em-tema-wordpress/?couponCode=HTMLWP-DEZ-21)
+
+- [Canal no YouTube: tutoriais gratuitos sobre tudo o que envolve o mundo do desenvolvimento WordPress. Curta, compartilhe, assine e ative o sininho para receber novidades.](https://www.youtube.com/channel/UCnXFdOWaAts3-cUNfZLXndw)
+ 
+- [Blog: artigos e tutoriais interessantes sobre desenvolvimento WordPress e temas relacionados](https://www.codigowp.net/blog)
+
+- [Livro "WordPress para Desenvolvedores". Saiba mais: https://www.youtube.com/watch?v=-b4O8KnwCu8](https://www.youtube.com/watch?v=-b4O8KnwCu8)
 
 
 [Voltar ao Índice](#indice)
