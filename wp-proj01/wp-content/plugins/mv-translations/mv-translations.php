@@ -56,6 +56,30 @@ if ( ! class_exists( 'MV_Translations' ) ) {
 		public static function activate() {
 			update_option( 'rewrite_rules', '' );
 
+			global $wpdb;
+
+			$table_name = $wpdb->prefix . "translationmeta";
+
+			$mvt_db_version = get_option( 'mv_translation_db_version' );
+
+			if ( empty( $mvt_db_version ) ) {
+				$query = "
+                    CREATE TABLE $table_name (
+                        meta_id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                        translation_id bigint(20) NOT NULL DEFAULT '0',
+                        meta_key varchar(255) DEFAULT NULL,
+                        meta_value longtext,
+                        PRIMARY KEY  (meta_id),
+                        KEY translation_id (translation_id),
+                        KEY meta_key (meta_key))
+                        ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+
+				require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+				dbDelta( $query );
+
+				$mvt_db_version = '1.0';
+				add_option( 'mv_translation_db_version', $mvt_db_version );
+			}
 		}
 
 		/**
