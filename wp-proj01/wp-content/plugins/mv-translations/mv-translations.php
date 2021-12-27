@@ -80,6 +80,36 @@ if ( ! class_exists( 'MV_Translations' ) ) {
 				$mvt_db_version = '1.0';
 				add_option( 'mv_translation_db_version', $mvt_db_version );
 			}
+
+			if ( $wpdb->get_row( "SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'submit-translation'" ) === null ) {
+
+				$current_user = wp_get_current_user();
+
+				$page = array(
+					'post_title'   => __( 'Submit Translation', 'mv-translations' ),
+					'post_name'    => 'submit-translation',
+					'post_status'  => 'publish',
+					'post_author'  => $current_user->ID,
+					'post_type'    => 'page',
+					'post_content' => '<!-- wp:shortcode -->[mv_translations]<!-- /wp:shortcode -->'
+				);
+				wp_insert_post( $page );
+			}
+
+			if ( $wpdb->get_row( "SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'edit-translation'" ) === null ) {
+
+				$current_user = wp_get_current_user();
+
+				$page = array(
+					'post_title'   => __( 'Edit Translation', 'mv-translations' ),
+					'post_name'    => 'edit-translation',
+					'post_status'  => 'publish',
+					'post_author'  => $current_user->ID,
+					'post_type'    => 'page',
+					'post_content' => '<!-- wp:shortcode -->[mv_translations_edit]<!-- /wp:shortcode -->'
+				);
+				wp_insert_post( $page );
+			}
 		}
 
 		/**
