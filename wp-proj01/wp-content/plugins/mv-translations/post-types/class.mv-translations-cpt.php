@@ -7,6 +7,8 @@ if ( ! class_exists( 'MV_Translations_Post_Type' ) ) {
 			add_action( 'init', array( $this, 'create_taxonomy' ) );
 			add_action( 'init', array( $this, 'register_metadata_table' ) );
 			add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
+
+			add_action( 'wp_insert_post', array( $this, 'save_post' ), 10, 2 );
 		}
 
 		public function create_post_type() {
@@ -73,6 +75,74 @@ if ( ! class_exists( 'MV_Translations_Post_Type' ) ) {
 
 		public function add_inner_meta_boxes( $post ) {
 			require_once( MV_TRANSLATIONS_PATH . 'views/mv-translations_metabox.php' );
+		}
+
+		public function save_post( $post_id, $post ) {
+			if ( isset( $_POST['mv_translations_nonce'] ) ) {
+				if ( ! wp_verify_nonce( $_POST['mv_translations_nonce'], 'mv_translations_nonce' ) ) {
+					return;
+				}
+			}
+
+			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+				return;
+			}
+
+			if ( isset( $_POST['post_type'] ) && $_POST['post_type'] === 'mv-translations' ) {
+				if ( ! current_user_can( 'edit_page', $post_id ) ) {
+					return;
+				} elseif ( ! current_user_can( 'edit_post', $post_id ) ) {
+					return;
+				}
+			}
+
+			if ( isset( $_POST['action'] ) && $_POST['action'] == 'editpost' ) {
+
+				$transliteration = sanitize_text_field( $_POST['mv_translations_transliteration'] );
+				$video           = esc_url_raw( $_POST['mv_translations_video_url'] );
+
+				global $wpdb;
+
+				if ( get_post_type( $post ) == 'mv-translations' &&
+				     $post->post_status != 'trash' &&
+				     $post->post_status != 'auto-draft' &&
+				     $post->post_status != 'draft' &&
+				     $wpdb->get_var(
+					     $wpdb->prepare(
+						     "SELECT translation_id
+                            FROM $wpdb->translationmeta
+                            WHERE translation_id = %d",
+						     $post_id
+					     ) ) == null
+				) {
+					$wpdb->insert(
+						$wpdb->translationmeta,
+						array(
+							'translation_id' => $post_id,
+							'meta_key'       => 'mv_translations_transliteration',
+							'meta_value'     => $transliteration
+						),
+						array(
+							'%d',
+							'%s',
+							'%s'
+						)
+					);
+					$wpdb->insert(
+						$wpdb->translationmeta,
+						array(
+							'translation_id' => $post_id,
+							'meta_key'       => 'mv_translations_video_url',
+							'meta_value'     => $video
+						),
+						array(
+							'%d',
+							'%s',
+							'%s'
+						)
+					);
+				}
+			}
 		}
 	}
 }
