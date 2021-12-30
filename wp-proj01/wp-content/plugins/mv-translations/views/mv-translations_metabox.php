@@ -11,6 +11,12 @@ $results = $wpdb->get_results( $query, ARRAY_A );
 <table class="form-table mv-translations-metabox">
     <!-- Nonce -->
     <input type="hidden" name="mv_translations_nonce" value="<?php echo wp_create_nonce( 'mv_translations_nonce' ); ?>">
+
+    <input
+            type="hidden"
+            name="mv_translations_action"
+            value="<?php echo( empty ( $results[0]['meta_value'] ) || empty ( $results[1]['meta_value'] ) ? 'save' : 'update' ); ?>">
+
     <tr>
         <th>
             <label for="mv_translations_transliteration"><?php esc_html_e( 'Has transliteration?', 'mv-translations' ); ?></label>
