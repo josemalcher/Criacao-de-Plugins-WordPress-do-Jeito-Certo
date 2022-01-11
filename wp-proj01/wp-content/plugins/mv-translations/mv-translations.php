@@ -44,6 +44,9 @@ if ( ! class_exists( 'MV_Translations' ) ) {
 			require_once( MV_TRANSLATIONS_PATH . "post-types/class.mv-translations-cpt.php" );
 			$MVTranslationsPostType = new MV_Translations_Post_Type();
 
+			require_once( MV_TRANSLATIONS_PATH . "shortcodes/class.mv-translations-shortcode.php" );
+			$MVTranslationsShortcode = new MV_Translations_Shortcode();
+
 		}
 
 		public function define_constants() {
@@ -144,4 +147,3 @@ if ( class_exists( 'MV_Translations' ) ) {
 	// Instatiate the plugin class
 	$mv_translations = new MV_Translations();
 }
-
