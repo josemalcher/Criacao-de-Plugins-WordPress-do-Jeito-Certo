@@ -1,4 +1,14 @@
 <?php
+
+if( isset( $_POST['mv_translations_nonce'] ) ){
+	if( ! wp_verify_nonce( $_POST['mv_translations_nonce'], 'mv_translations_nonce' ) ){
+		return;
+	}
+}
+
+$errors = array();
+$hasError = false;
+
 if( isset( $_POST['submitted'])){
 	$title              = $_POST['mv_translations_title'];
 	$content            = $_POST['mv_translations_content'];
@@ -6,25 +16,55 @@ if( isset( $_POST['submitted'])){
 	$transliteration    = $_POST['mv_translations_transliteration'];
 	$video              = $_POST['mv_translations_video_url'];
 
-	$post_info = array(
-		'post_type' => 'mv-translations',
-		'post_title'    => $title,
-		'post_content'  => $content,
-		'tax_input' => array(
-			'singers'   => $singer
-		),
-		'post_status'   => 'pending'
-	);
+	if( trim( $title ) === '' ){
+		$errors[] = esc_html__( 'Please, enter a title', 'mv-translations' );
+		$hasError = true;
+	}
 
-	$post_id = wp_insert_post( $post_info );
+	if( trim( $content ) === '' ){
+		$errors[] = esc_html__( 'Please, enter some content', 'mv-translations' );
+		$hasError = true;
+	}
 
-	global $post;
-	MV_Translations_Post_Type::save_post( $post_id, $post );
+	if( trim( $singer ) === '' ){
+		$errors[] = esc_html__( 'Please, enter some singer', 'mv-translations' );
+		$hasError = true;
+	}
+
+	if( $hasError === false ){
+		$post_info = array(
+			'post_type' => 'mv-translations',
+			'post_title'    => sanitize_text_field( $title ),
+			'post_content'  => wp_kses_post( $content ),
+			'tax_input' => array(
+				'singers'   => sanitize_text_field( $singer )
+			),
+			'post_status'   => 'pending'
+		);
+
+		$post_id = wp_insert_post( $post_info );
+
+		global $post;
+		MV_Translations_Post_Type::save_post( $post_id, $post );
+	}
+
 }
 ?>
 <div class="mv-translations">
     <form action="" method="POST" id="translations-form">
         <h2><?php esc_html_e( 'Submit new translation' , 'mv-translations' ); ?></h2>
+
+		<?php
+		if( $errors != '' ){
+			foreach( $errors as $error ){
+				?>
+                <span class="error">
+                            <?php echo $error; ?>
+                        </span>
+				<?php
+			}
+		}
+		?>
 
         <label for="mv_translations_title"><?php esc_html_e( 'Title', 'mv-translations' ); ?> *</label>
         <input type="text" name="mv_translations_title" id="mv_translations_title" value="" required />
@@ -33,7 +73,7 @@ if( isset( $_POST['submitted'])){
         <input type="text" name="mv_translations_singer" id="mv_translations_singer" value="" required />
 
         <br />
-		<?php wp_editor( '', 'mv_translations_content', array( 'wpautop' => true, 'media_buttons' => false ) ); ?>
+		<?php wp_editor( '', 'mv_translations_content', array( 'wpautop' => true, 'media_buttons' => true ) ); ?>
         </br />
 
         <fieldset id="additional-fields">
