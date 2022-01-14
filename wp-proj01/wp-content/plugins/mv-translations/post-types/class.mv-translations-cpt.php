@@ -78,7 +78,7 @@ if ( ! class_exists( 'MV_Translations_Post_Type' ) ) {
 			require_once( MV_TRANSLATIONS_PATH . 'views/mv-translations_metabox.php' );
 		}
 
-		public function save_post( $post_id, $post ) {
+		public static function save_post( $post_id, $post ) {
 			if ( isset( $_POST['mv_translations_nonce'] ) ) {
 				if ( ! wp_verify_nonce( $_POST['mv_translations_nonce'], 'mv_translations_nonce' ) ) {
 					return;
