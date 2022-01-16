@@ -49,6 +49,9 @@ if ( ! class_exists( 'MV_Translations' ) ) {
 			require_once( MV_TRANSLATIONS_PATH . "shortcodes/class.mv-translations-shortcode.php" );
 			$MVTranslationsShortcode = new MV_Translations_Shortcode();
 
+			require_once( MV_TRANSLATIONS_PATH . "shortcodes/class.mv-translations-edit-shortcode.php" );
+			$MVTranslationsEditShortcode = new MV_Translations_Edit_Shortcode();
+
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ), 999 );
 
 		}
