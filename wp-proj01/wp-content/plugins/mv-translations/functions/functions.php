@@ -61,7 +61,7 @@ function mvt_register_user() {
 				'last_name'  => $lastname,
 				'user_email' => $useremail,
 				'user_pass'  => $password,
-				'role'       => 'contributor'
+				'role'       => 'author'
 			);
 			$user      = wp_insert_user( $user_data );
 
