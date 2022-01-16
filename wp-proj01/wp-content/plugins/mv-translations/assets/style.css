@@ -21,6 +21,11 @@
     background-color: #f5f5f5;
 }
 
+.single-mv-translations .video iframe {
+    width: 560px !important;
+    height: 350px !important;
+}
+
 .has-transliteration:empty {
     display: none;
 }

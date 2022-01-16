@@ -145,6 +145,9 @@ if ( ! class_exists( 'MV_Translations' ) ) {
 		public function register_scripts() {
 			wp_register_script( 'custom_js', MV_TRANSLATIONS_URL . 'assets/jquery.custom.js', array( 'jquery' ), MV_TRANSLATIONS_VERSION, true );
 			wp_register_script( 'validate_js', MV_TRANSLATIONS_URL . 'assets/jquery.validate.min.js', array( 'jquery' ), MV_TRANSLATIONS_VERSION, true );
+			if ( is_singular( 'mv-translations' ) ) {
+				wp_enqueue_style( 'mv-translations', MV_TRANSLATIONS_URL . 'assets/style.css', array(), MV_TRANSLATIONS_VERSION, 'all' );
+			}
 		}
 
 		public function load_custom_single_template( $tpl ) {
