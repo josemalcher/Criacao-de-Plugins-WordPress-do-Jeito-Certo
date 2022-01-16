@@ -119,6 +119,24 @@ if ( isset( $_POST['submitted'] ) ) {
     </form>
 </div>
 <div class="translations-list">
+	<?php
+
+	global $current_user;
+	global $wpdb;
+	$q       = $wpdb->prepare(
+		"SELECT ID, post_author, post_date, post_title, post_status, meta_key, meta_value
+    FROM $wpdb->posts AS p
+    INNER JOIN $wpdb->translationmeta AS tm
+    ON p.ID = tm.translation_id
+    WHERE p.post_author = %d
+    AND tm.meta_key = 'mv_translations_transliteration'
+    AND p.post_status IN ( 'publish', 'pending' )
+    ORDER BY p.post_date DESC",
+		$current_user->ID
+	);
+	$results = $wpdb->get_results( $q );
+	var_dump( $results );
+	?>
     <table>
         <caption><?php esc_html_e( 'Your Translations', 'mv-translations' ); ?></caption>
         <thead>
