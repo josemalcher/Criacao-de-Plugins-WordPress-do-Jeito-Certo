@@ -19,7 +19,6 @@
 				$has_transliteration = $results[0]['meta_value'] == "Yes" ? "has-transliteration" : "";
 				$video_url           = esc_url( $results[1]['meta_value'] );
 				$singers             = get_the_terms( $post->ID, 'singers' );
-				var_dump( $results );
 
 				while ( have_posts() ):
 					the_post();

@@ -39,6 +39,8 @@ if ( ! class_exists( 'MV_Translations' ) ) {
 
 		public function __construct() {
 
+			$this->load_textdomain();
+
 			$this->define_constants();
 
 			require_once( MV_TRANSLATIONS_PATH . "functions/functions.php" );
@@ -63,6 +65,14 @@ if ( ! class_exists( 'MV_Translations' ) ) {
 			define( 'MV_TRANSLATIONS_PATH', plugin_dir_path( __FILE__ ) );
 			define( 'MV_TRANSLATIONS_URL', plugin_dir_url( __FILE__ ) );
 			define( 'MV_TRANSLATIONS_VERSION', '1.0.0' );
+		}
+
+		public function load_textdomain() {
+			load_plugin_textdomain(
+				'mv-translations',
+				false,
+				dirname( plugin_basename( __FILE__ ) ) . '/languages/'
+			);
 		}
 
 		/**
