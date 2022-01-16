@@ -35,15 +35,59 @@
  */
 function twentytwenty_theme_support() {
 
-	add_filter( 'mvt_video', 'modify_video', 10, 2 );
-	function modify_video( $video_embed, $post_title ) {
-		$post_title  = get_the_title( $post->ID );
-		$video_embed = "<h3>This is a video from '$post_title'</h3>" . $video_embed;
+	// add_filter( 'mvt_video', 'modify_video', 10, 2 );
+	// function modify_video( $video_embed, $post_title ){
+	// 	$post_title = get_the_title( $post->ID );
+	// 	$video_embed = "<h3>This is a video from '$post_title'</h3>" . $video_embed;
+	// 	return $video_embed;
+	// }
 
-		return $video_embed;
+	add_action( 'mvt_content', 'mvt_display_meta', 10 );
+	function mvt_display_meta() {
+		$singers = get_the_terms( $post->ID, 'singers' );
+		?>
+        <h1><?php the_title(); ?></h1>
+        <div class="meta">
+				<span class="singer"><strong><?php _e( 'Singer', 'mv-translations' ); ?>:</strong>
+					<?php foreach ( $singers as $singer ): ?>
+                        <a href="<?php echo esc_url( get_term_link( $singer ) ) ?>"><?php echo esc_html( $singer->name ); ?></a>
+					<?php endforeach; ?>
+				</span>
+            <span class="author"><strong><?php _e( 'Author', 'mv-translations' ); ?>: </strong>
+					<?php the_author_posts_link(); ?>
+				</span>
+            <span class="the-date"><strong><?php _e( 'Published on', 'mv-translations' ); ?>: </strong>
+					<?php the_date(); ?>
+				</span>
+        </div>
+		<?php
 	}
 
-	add_theme_support( 'mv-testimonials' );
+	add_action( 'mvt_content', 'mvt_display_content', 11 );
+	function mvt_display_content() {
+		?>
+        <div class="content">
+			<?php the_content(); ?>
+        </div>
+		<?php
+	}
+
+	add_action( 'mvt_content', 'mvt_display_video', 12 );
+	function mvt_display_video() {
+		global $results;
+		$video_url = esc_url( $results[1]['meta_value'] );
+		?>
+        <div class="video">
+			<?php
+			if ( ! empty( $video_url ) ) {
+				global $wp_embed;
+				$video_embed = $wp_embed->run_shortcode( '[embed width="560" height="315"]' . $video_url . '[/embed]' );
+				echo $video_embed;
+			}
+			?>
+        </div>
+		<?php
+	}
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
