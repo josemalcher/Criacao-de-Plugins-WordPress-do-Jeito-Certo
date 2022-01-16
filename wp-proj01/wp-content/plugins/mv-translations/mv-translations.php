@@ -54,6 +54,8 @@ if ( ! class_exists( 'MV_Translations' ) ) {
 
 			add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ), 999 );
 
+			add_filter( 'single_template', array( $this, 'load_custom_single_template' ) );
+
 		}
 
 		public function define_constants() {
@@ -143,6 +145,14 @@ if ( ! class_exists( 'MV_Translations' ) ) {
 		public function register_scripts() {
 			wp_register_script( 'custom_js', MV_TRANSLATIONS_URL . 'assets/jquery.custom.js', array( 'jquery' ), MV_TRANSLATIONS_VERSION, true );
 			wp_register_script( 'validate_js', MV_TRANSLATIONS_URL . 'assets/jquery.validate.min.js', array( 'jquery' ), MV_TRANSLATIONS_VERSION, true );
+		}
+
+		public function load_custom_single_template( $tpl ) {
+			if ( is_singular( 'mv-translations' ) ) {
+				$tpl = MV_TRANSLATIONS_PATH . 'views/templates/single-mv-translations.php';
+			}
+
+			return $tpl;
 		}
 
 	}
