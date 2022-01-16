@@ -1114,6 +1114,37 @@ public static function activate() {
 
 ## <a name="parte6">6 - Seção 6: Conclusão</a>
 
+- 98. Deixando plugins customizáveis - Filtros
+
+- [wp-proj01/wp-content/plugins/mv-translations/views/templates/single-mv-translations.php](wp-proj01/wp-content/plugins/mv-translations/views/templates/single-mv-translations.php)
+
+```php
+<div class="video">
+									<?php
+									if ( ! empty( $video_url ) ) {
+										global $wp_embed;
+										$video_embed = $wp_embed->run_shortcode( '[embed width="560" height="315"]' . $video_url . '[/embed]' );
+										echo apply_filters( 'mvt_video', $video_embed, $post_title );
+									}
+									?>
+                                </div>
+```
+
+- [wp-proj01/wp-content/themes/twentytwenty/functions.php](wp-proj01/wp-content/themes/twentytwenty/functions.php)
+
+```php
+function twentytwenty_theme_support() {
+
+	add_filter( 'mvt_video', 'modify_video', 10, 2 );
+	function modify_video( $video_embed, $post_title ){
+		$post_title = get_the_title( $post->ID );
+		$video_embed = "<h3>This is a video from '$post_title'</h3>" . $video_embed;
+		return $video_embed;
+	}
+```
+
+- 100. Deixando plugins customizáveis - Ganchos de ação
+
 - [Criação de Temas WordPress com WooCommerce: Curso Avançado](https://www.udemy.com/course/woocommerce-wordpress-curso-avancado/?couponCode=WOO-COMPLETO-DEZ-21)
 
 - [WordPress para Desenvolvedores: Criação de Temas do Zero](https://www.udemy.com/course/wordpress-temas-do-zero-com-bootstrap-4/?couponCode=PDEV-DEZ-21)
